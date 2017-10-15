@@ -122,4 +122,3 @@ From a terminal, in the root project folder (where the **package.json** file exi
 - [SASS](http://sass-lang.com/)
 - [Learn GraphQL](https://learngraphql.com/)
 - [Learn Relay](https://www.learnrelay.org/)
-- [Resolving GraphQL Circular Type References](http://t4d.io/resolving-graphql-circular-type-references/)
