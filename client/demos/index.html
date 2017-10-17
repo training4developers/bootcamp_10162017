@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+    'use strict';
+
+    class Promise {
+      constructor(fn) {
+
+        fn(resolveFn, rejectFn);
+
+      }
+    }
+
+    const youngMan = new Promise(function youngLady(resolve, reject) {
+
+      setTimeout(() => {
+        resolve('yes, I am madly in love with you...');
+      }, 4000);
+
+    });
+
+    youngMan.then((results) => {
+      console.log(results);
+      console.log('yay she said yes!');
+
+      console.log('need to find a location');
+      return new Promise(function findALocation(resolve) {
+
+        setTimeout(function() {
+          resolve('found a location.');
+        }, 4000);
+
+      });
+
+    }).then(results => {
+      console.log(results);
+
+      console.log('need to find a caterer');
+      return new Promise(function findALocation(resolve) {
+
+        setTimeout(function() {
+          resolve('found a caterer.');
+        }, 4000);
+
+      });
+
+    }).then(results => {
+    
+      console.log(results);
+    
+    }).catch((results) => {
+      console.log(results);
+      console.log('sign up eHarmony...');
+    }).then(() => {
+    });
+
+    console.log('young man is waiting...');
+
+
+    // let counter = 0;
+
+    // counter++;
+    // setTimeout(() => {
+    //   console.log('first');
+    //   counter--;
+    //   if (counter === 0) {
+    //     allDone();
+    //   }
+    // }, 2000);
+
+    // counter++;
+    // setTimeout(() => {
+    //   console.log('second');
+    //   counter--;
+    //   if (counter === 0) {
+    //     allDone();
+    //   }
+    // }, 1000);
+
+    // counter++;
+    // setTimeout(() => {
+    //   console.log('third');
+    //   counter--;
+    //   if (counter === 0) {
+    //     allDone();
+    //   }
+    // }, 3000);
+
+    // function allDone() {
+    //   console.log('all done');
+    // }
+
+    // setTimeout(() => {
+    //     console.log('first');
+    //     setTimeout(() => {
+    //         console.log('second');
+    //         setTimeout(() => {
+    //             console.log('third');
+    //             setTimeout(() => {
+    //                 console.log('fourth');
+    //             }, 1000);
+    //         }, 1000);
+    //     }, 1000);
+    // }, 2000);
+
+
+    // console.log('made it here');
+
+  </script>
+</body>
+
+</html>
