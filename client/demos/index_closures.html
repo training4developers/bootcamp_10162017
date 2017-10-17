@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+    'use strict';
+
+    // function createPerson(fn) {
+
+    //   // let firstName = fn;
+      
+    //   return {
+    //     _firstName: fn,
+    //     getFirstName() {
+    //       return this._firstName;
+    //     }
+    //   }
+    // }
+
+    // const person = createPerson('Bob');
+    // console.log(person.getFirstName());
+
+    // console.log(person.firstname);
+
+    var r = 2; // global
+    let s = 3; // script
+
+
+    function outer() {
+
+      let t = { id: 2 };
+
+      // setTimeout(() => {
+      //   t = 4;
+      // }, 2000);
+
+      return function inner() {
+        console.log(r,s,t);
+      };
+    }
+
+  
+    const fn = outer();
+  
+    console.dir(fn);
+    fn();
+
+    // setTimeout(() => {
+    //   fn();
+    // }, 4000);
+
+
+    const person = {
+      fn: 'Bob',
+      ln: 'Smith',
+      age: 23,
+      address: { 
+        city: 'Mtn View',
+      }
+    };
+
+
+
+  </script>
+</body>
+
+</html>

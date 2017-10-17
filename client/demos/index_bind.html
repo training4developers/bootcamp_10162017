@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+
+    'use strict';
+
+    function t(...params) {
+      console.log(this, params);
+    }
+
+    const fn = t.bind({ id: 4 }, 'a');
+    fn(1, 2);
+
+
+
+    // function doIt(a,b,c) {
+    //   console.log(a,b,c);
+    //   console.log(this);
+    //   //const that = this;
+    //   const inner = () => {
+    //     console.log(this);
+    //   }
+    //   inner();
+    // }
+
+    // // doIt(); // undefined
+    // // window.doIt(); // window
+
+    // const o = {
+    //   doIt: doIt,
+    // };
+
+    // //o.doIt(); // o
+
+    // o.doIt.call({ id: 2}, 1, 2, 3);
+    // o.doIt.apply({ id: 2}, [1, 2, 3]);
+
+    // const fn = o.doIt.bind({ id: 4});
+    // fn();
+
+    // //console.log(doIt === o.doIt);
+
+    // // const person = {
+    // //   fn: 'Bob',
+    // //   ln: 'Smith',
+    // //   getFullName: function() {
+    // //     return this.fn + this.ln;
+    // //   }
+    // // }
+
+    // // const person2 = {
+    // //   fn: 'Jane',
+    // //   ln: 'Smith',
+    // //   getFullName: person.getFullName,
+    // // }
+  
+  </script> 
+</body>
+
+</html>

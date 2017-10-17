@@ -11,10 +11,22 @@
 <body>
   <main class="container-fluid"></main>
   <script>
+
     'use strict';
 
+    Array.prototype.filter = function() {
+      return this.length;
+    };
 
-  </script>
+    const items = [1,2,3,4,5];
+    const items2 = [1,2,3,4,5];
+
+
+    console.dir(items.filter());
+    console.dir(items2.filter());
+    
+
+  </script> 
 </body>
 
 </html>

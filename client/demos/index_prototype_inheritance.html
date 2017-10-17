@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+
+    'use strict';
+    
+    const parent = {
+      amt: 1000,
+      name: 'Kapil',
+      address: {
+        city: 'Mtn View',
+        country: 'CA',
+      }
+    };
+
+    const child = Object.create(parent);
+    child.name = 'Paahi';
+
+    console.log(child.amt);
+    parent.amt = 2000;
+    console.log(child.amt);
+    child.amt = 10;
+    console.log(child.amt);
+    delete child.amt;
+    console.log(child.amt);
+
+    //child.address.city = 'Austin';
+    child.address = {
+      city: 'Austin',
+      country: 'TX',
+    };
+    console.dir(child);
+
+
+  
+  </script> 
+</body>
+
+</html>
