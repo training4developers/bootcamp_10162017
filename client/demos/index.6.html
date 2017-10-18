@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+    'use strict';
+
+    const someData = 'Intuit is cool!';
+
+    function doIt({ someData }) {
+      console.log(someData);
+    }
+
+    doIt({ someData });
+
+    const mapStateToProps = ({ widgets }) => ({ widgets });
+
+    function mapStateToProps(state) {
+
+      return {
+        widgets: state.widgets,
+      };
+    }
+
+
+
+
+
+    // const person = {
+    //   firstName: 'Bob',
+    //   lastName: 'Smith',
+    //   address: {
+    //     street: '123 Oak Lane',
+    //     city: 'Austin',
+    //     state: 'Texas',
+    //   }
+    // };
+
+    // const { firstName: fn } = person;
+
+    // const { address: { street } } = person;
+
+    // console.log(person.firstName);
+    // console.log(fn); // Bob
+    // console.log(street);
+
+
+  </script>
+</body>
+
+</html>

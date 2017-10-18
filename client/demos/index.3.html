@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+    'use strict';
+
+    // fetch('http://localhost:3010/widgets')
+    //   .then(res => res.json())
+    //   .then(widgets => console.log(widgets));
+
+    async function loadWidgets() {
+
+      throw Error('something went wrong');
+
+      const res = await fetch('http://localhost:3010/widgets');
+      const widgets = await res.json();
+
+      return widgets;
+    }
+
+    loadWidgets()
+      .then(widget => console.log(widget))
+      .catch(err => console.error(err));
+
+
+  </script>
+</body>
+
+</html>

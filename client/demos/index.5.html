@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+    'use strict';
+
+    const firstName = 'Bob';
+
+    const propName = 'lastName';
+    const lastName = 'Smith';
+
+    const person = {
+      // short-hand prop/variable name
+      firstName,
+      // short-hand computed property
+      [ propName ]: lastName,
+      // short-hand function property
+      getFullName() {
+        return this.firstName + ' ' + this.lastName;
+      },
+      // short-hand getter/setter
+      get hairColor() {
+        return this._hairColor;
+      },
+      set hairColor(value) {
+        this._hairColor = value;
+      }
+    };
+
+    console.log('hairColor' in person);
+    console.log(person.hasOwnProperty('hairColor'));
+
+    // get all enumerable properties on the prototype chain
+    for (var propName2 in person) {
+      //console.log(propName2);
+    }
+
+    // get all enumerable properties on the object
+    Object.keys(person).forEach(key => {
+      //console.log(key);
+    });
+
+    // get all properties on the object
+    Object.getOwnPropertyNames(person).forEach(name => {
+      //console.log(name);
+    });
+
+    console.log(person);
+
+    const person2 = {};
+    // copies the properties from one object to another
+    Object.assign(person2, person);
+
+    console.log(person2);
+
+
+    // const person = {
+    //   firstName: 'Bob',
+    //   lastName: 'Smith',
+    //   eyeColor: 'blue',
+    // };
+
+    // person.age = 32;
+
+    // Object.defineProperty(person, 'hairColor', {
+    //   configurable: true,
+    //   enumerable: true,
+    //   // writable: true,
+    //   // value: 'brown',
+    //   get: function() {
+    //     console.log('getting hair color');
+    //     return this._hairColor;
+    //   },
+    //   set: function(value) {
+    //     console.log('setting hair color');
+    //     this._hairColor = value;
+    //   }
+    // });
+
+    // person.hairColor = 'blonde';
+    // console.log(person.hairColor);
+
+
+  </script>
+</body>
+
+</html>

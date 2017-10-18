@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+    'use strict';
+
+    const p1 = new Promise(resolve => setTimeout(() => resolve('a'), 2000));
+    const p2 = new Promise(resolve => setTimeout(() => resolve('b'), 4000));
+
+    Promise.race([ p1, p2 ]).then(result => console.log(result));
+
+
+
+    // const p1 = new Promise(resolve => setTimeout(() => resolve('a'), 2000));
+    // const p2 = new Promise(resolve => setTimeout(() => resolve('b'), 4000));
+    // const p3 = new Promise(resolve => setTimeout(() => resolve('c'), 6000));
+    // const p4 = new Promise(resolve => setTimeout(() => resolve('d'), 8000));
+
+    // p1.then(results => console.log(results));
+    // p2.then(results => console.log(results));
+    // p3.then(results => console.log(results));
+    // p4.then(results => console.log(results));
+
+    // Promise.all([ p1, p2, p3, p4 ]).then(results => {
+    //   console.log('all done');
+    //   console.log(results);
+    // });
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+    'use strict';
+
+    const nums = [1,2,3,4,5,6,7,8,9,10];
+
+    // please do not use these functions
+    // nums.push(1);  // return new array length
+    // nums.pop(); // returns the item that was removed
+    // nums.unshift(9);  // return new array length
+    // nums.shift(); // returns the item that was removed
+    // nums.splice(1, 2, 7, 8, 9);
+    // nums.sort();
+    // nums.reverse();
+
+    // immutably
+    // let newNums = nums.concat(1);
+    // newNums = newNums.slice(0, 5);
+    // newNums = [].concat(1, nums);
+    // newNums = newNums.slice(1);
+    // let otherNums = newNums.concat().sort();
+
+    const doubleNums = nums.map(num => num * 2);
+    const numsGreaterThan5 = nums.filter(num => num > 5);
+    const sum = nums.reduce( (acc, current) => acc + current );
+
+    console.log(nums);
+    console.log(doubleNums);
+    console.log(numsGreaterThan5);
+    console.log(sum);
+    // console.log(nums instanceof Array);
+    // console.log(Array.isArray(nums));
+
+  </script>
+</body>
+
+</html>

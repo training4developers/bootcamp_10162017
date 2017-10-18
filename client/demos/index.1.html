@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <main class="container-fluid"></main>
+  <script>
+    'use strict';
+
+    // const youngMan = new Promise(function youngLady(resolve, reject) {
+
+    //   setTimeout(() => {
+    //     resolve('yes, I am madly in love with you...');
+    //   }, 4000);
+
+    // });
+
+    // youngMan.then((results) => {
+    //   console.log(results);
+    //   console.log('yay she said yes!');
+
+    //   console.log('need to find a location');
+    //   return new Promise(function findALocation(resolve) {
+
+    //     setTimeout(function() {
+    //       resolve('found a location.');
+    //     }, 4000);
+
+    //   });
+
+    // })
+
+    const getData = (url) => {
+
+      return new Promise(resolve => {
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange', () => {
+          if (xhr.status === 200 && xhr.readyState === 4) {
+            resolve(JSON.parse(xhr.responseText));
+          }
+        });
+        xhr.open('GET', url);
+        xhr.send();
+      });
+    };
+
+    getData('http://localhost:3010/widgets').then((results) => {
+      console.log(results);
+    });
+
+    // 1. Create a function named 'getData'
+    // 2. Get data will accept two params, url and a callback function
+    // 3. Call the getData function with the url and the callback function
+    // 4. When the AJAX operation completes, the callback function should be invoked
+    // and the data from the response should be passed into it
+    // 5. Code the callback function to display the data
+    // 6. DO NOT USE PROMISES
+
+    // getData(url, (results) => {
+    //   console.log(results);
+    // });
+
+
+  </script>
+</body>
+
+</html>
