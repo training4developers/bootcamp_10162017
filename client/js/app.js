@@ -4,12 +4,12 @@ import * as ReactDOM from 'react-dom';
 import { ColorTool } from './components/color-tool';
 
 const colors = [
-  { name: 'red', hexCode: '#ff0000' },
-  { name: 'white', hexCode: '#ffffff' },
-  { name: 'gold', hexCode: '#ffdf00' },
-  { name: 'green', hexCode: '#ff8000' },
-  { name: 'saffron', hexCode: '#ff9933' },
-  { name: 'blue', hexCode: '#0000ff' },
+  { id: 1, name: 'red', hexCode: '#ff0000' },
+  { id: 2, name: 'white', hexCode: '#ffffff' },
+  { id: 3, name: 'gold', hexCode: '#ffdf00' },
+  { id: 4, name: 'green', hexCode: '#ff8000' },
+  { id: 5, name: 'saffron', hexCode: '#ff9933' },
+  { id: 6, name: 'blue', hexCode: '#0000ff' },
 ];
 
 ReactDOM.render(

@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 import { ToolHeader } from './tool-header';
+import { ColorList } from './color-list';
+import { ColorForm } from './color-form'; 
 
 export class ColorTool extends React.Component {
 
@@ -12,22 +14,18 @@ export class ColorTool extends React.Component {
       newColorName: '',
       newColorHexCode: '#000000',
     };
-
-    this.onChange = this.onChange.bind(this);
   }
 
   onChange(e) {
     this.setState({ [ e.target.name ]: e.target.value });
   }
 
-  onClick = () => {
+  addColor = newColor => {
+
+    newColor.id = Math.max(...this.state.colorList.map(c => c.id)) + 1;
+
     this.setState({
-      colorList: this.state.colorList.concat({
-        name: this.state.newColorName,
-        hexCode: this.state.newColorHexCode,
-      }),
-      newColorName: '',
-      newColorHexCode: '#000000',
+      colorList: this.state.colorList.concat(newColor),
     });
   };
 
@@ -35,22 +33,8 @@ export class ColorTool extends React.Component {
 
     return <div>
       <ToolHeader headerText="Color Tool" />
-      <ul>
-        {this.state.colorList.map(color => <li>{color.name} - {color.hexCode}</li>)}
-      </ul>
-      <form>
-        <div>
-          <label htmlFor="new-color-name-input">New Color Name:</label>
-          <input type="text" id="new-color-name-input" name="newColorName"
-            value={this.state.newColorName} onChange={this.onChange} />
-        </div>
-        <div>
-          <label htmlFor="new-color-hex-code-input">New Color Hex Code:</label>
-          <input type="color" id="new-color-hex-code-input" name="newColorHexCode"
-            value={this.state.newColorHexCode} onChange={this.onChange} />
-        </div>
-        <button type="button" onClick={this.onClick}>Add Color</button>
-      </form>
+      <ColorList colors={this.state.colorList} />
+      <ColorForm onSubmitColor={this.addColor} submitButtonText="Add Color" />
     </div>;
   }
 }
