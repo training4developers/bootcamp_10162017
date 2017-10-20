@@ -31,11 +31,7 @@ export class CarTool extends React.Component {
     );
   }
 
-  editCar = editCarId => {
-    this.setState({
-      editCarId,
-    });
-  };
+  editCar = editCarId => this.setState({ editCarId });
 
   saveCar = car => {
 
@@ -72,13 +68,19 @@ export class CarTool extends React.Component {
 
   filterCars = filter => this.setState(filter);
 
+  onChange() {
+    // this
+  }
+
   render() {
+    const { filterFieldName, filterFieldValue } = this.state;
     return <div>
       <ToolHeader headerText="Car Tool" />
       <CarTable cars={this.sortedCars} editCarId={this.state.editCarId}
         onDeleteCar={this.deleteCar} onEditCar={this.editCar}
         onSaveCar={this.saveCar} onCancelCar={this.cancelCar}
-        onSortCars={this.sortCars} onFilterCars={this.filterCars}  />
+        onSortCars={this.sortCars} onFilterCars={this.filterCars}
+        initialFilter={{ filterFieldName, filterFieldValue }}  />
       <CarForm onSubmitCar={this.saveCar} />
     </div>;
   }

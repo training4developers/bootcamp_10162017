@@ -7,10 +7,7 @@ export class CarFilter extends BaseForm {
   constructor(props) {
     super(props);
 
-    this.state = {
-      filterFieldName: '',
-      filterFieldValue: '',
-    };
+    this.state = { ...props.initialFilter };
   }
 
   onKeyUp = () => {
