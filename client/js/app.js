@@ -1,14 +1,55 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { CarTool } from './components/car-tool';
+let counter = 0;
 
-const carData = [
-  { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2017, color: 'blue', price: 23000 },
-  { id: 2, make: 'Ford', model: 'Focus', year: 2015, color: 'yellow', price: 12000 },
-];
+class ListItem extends React.Component {
 
-ReactDOM.render(
-  <CarTool cars={carData} />,
-  document.querySelector('main')
-);
+  constructor(props) {
+    super(props);
+
+    this.countIndex = counter++;
+
+    console.log('constructor:', this.countIndex);
+
+    this.state = {
+      item: props.item,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('current:', this.props.item, 'next:', nextProps.item);
+    this.setState({
+      item: nextProps.item,
+    });
+  }
+
+  componentWillUnmount() {
+    console.log('unmounting:', this.countIndex);
+  }
+
+  render() {
+    console.log('render:', this.countIndex);
+    return <li>props: {this.props.item}, state: {this.state.item}</li>;
+  }
+}
+
+class UnorderedList extends React.Component {
+  render() {
+    return <ul>{this.props.items.map( (item) =>
+      <ListItem item={item} />)}</ul>;
+  }
+}
+
+const colors = ['red','green','blue'];
+
+
+ReactDOM.render(<UnorderedList items={colors} />, document.querySelector('main'));
+
+setTimeout(() => {
+
+  colors.splice(1,1);
+
+  ReactDOM.render(<UnorderedList items={colors} />, document.querySelector('main'));
+
+}, 4000);

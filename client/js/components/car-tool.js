@@ -64,6 +64,7 @@ export class CarTool extends React.Component {
     }
 
     this.setState({ cars, editCarId: 0 });
+    this.focusAfterEdit();
   }
 
   deleteCar = carId => {
@@ -76,11 +77,16 @@ export class CarTool extends React.Component {
 
   cancelCar = () => {
     this.setState({ editCarId: 0 });
+    this.focusAfterEdit();
   }
 
   sortCars = sortFieldName => this.setState({ sortFieldName });
 
   filterCars = filter => this.setState(filter);
+
+  setAfterEditFocus = focusAfterEditFn => {
+    this.focusAfterEdit = focusAfterEditFn;
+  }
 
   render() {
     const { filterFieldName, filterFieldValue } = this.state;
@@ -91,7 +97,7 @@ export class CarTool extends React.Component {
         onSaveCar={this.saveCar} onCancelCar={this.cancelCar}
         onSortCars={this.sortCars} onFilterCars={this.filterCars}
         initialFilter={{ filterFieldName, filterFieldValue }}  />
-      <CarForm onSubmitCar={this.saveCar} />
+      <CarForm onSubmitCar={this.saveCar} onSetFocus={this.setAfterEditFocus} />
     </div>;
   }
 }

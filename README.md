@@ -34,6 +34,8 @@ Breaks:
 - [Microsoft Virtual Academy](https://mva.microsoft.com/search/SearchResults.aspx#!q=Eric%20Greene&lang=1033)
 - [React Blog Posts](https://github.com/training4developers/react-flux-blog)
 - [React SitePoint](http://www.sitepoint.com/author/ericgreene/)
+- [React Labs](https://github.com/Microsoft/TechnicalCommunityContent/tree/master/Web%20Frameworks/React/Session%202%20-%20Hands%20On)
+- [Redux Labs](https://github.com/Microsoft/TechnicalCommunityContent/tree/master/Web%20Frameworks/React/Session%203%20-%20Hands%20On)
 
 ### Other Resources
 

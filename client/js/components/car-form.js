@@ -24,10 +24,15 @@ export class CarForm extends BaseForm {
     this.setState(this.getInitialState());
   }
 
-  componentDidMount() {
+  setFocusOnMake = () => {
     if (this.makeInput) {
       this.makeInput.focus();
     }
+  }
+
+  componentDidMount() {
+    this.setFocusOnMake();
+    this.props.onSetFocus(this.setFocusOnMake);
   }
 
   render() {
