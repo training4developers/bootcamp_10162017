@@ -24,12 +24,18 @@ export class CarForm extends BaseForm {
     this.setState(this.getInitialState());
   }
 
+  componentDidMount() {
+    if (this.makeInput) {
+      this.makeInput.focus();
+    }
+  }
+
   render() {
 
     return <form>
       <div>
         <label htmlFor="make-input">Make:</label>
-        <input type="text" id="make-input" name="make"
+        <input type="text" id="make-input" name="make" ref={ input => this.makeInput = input }
           value={this.state.make} onChange={this.onChange} />
       </div>
       <div>

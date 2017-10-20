@@ -2,32 +2,30 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
 import * as CarToolPropTypes from '../utils/car-tool-prop-types';
-import { BaseForm } from './base-form';
 
-export class CarFilter extends BaseForm {
+export class CarFilter extends React.Component {
 
   static propTypes = {
     initialFilter: PropTypes.shape({
       filterFieldName: PropTypes.oneOf([ 'make', 'model', 'year', 'color', 'price' ]),
-      filterFieldValue: CarToolPropTypes.fieldAndValue,
+      filterFieldValue: CarToolPropTypes.fieldNameAndValueType('filterFieldName').isRequired,
     }),
-  }
+    onFilter: PropTypes.func,
+  };
   
-  constructor(props) {
-    super(props);
-
-    this.state = { ...props.initialFilter };
-  }
-
   onKeyUp = () => {
-    this.props.onFilter({ ...this.state });
+    this.props.onFilter({
+      filterFieldName: this.filterFieldNameSelect.value,
+      filterFieldValue: this.filterFieldValueInput.value,
+    });
   };
 
   render() {
 
     return <form>
       <label htmlFor="filter-field-name-select">Filter Field:</label>
-      <select id="filter-field-name-select" name="filterFieldName" value={this.state.filterFieldName} onChange={this.onChange}>
+      <select id="filter-field-name-select" name="filterFieldName"
+        defaultValue={this.props.initialFilter.filterFieldName} ref={ select => this.filterFieldNameSelect = select }>
         <option value="">Select One...</option>
         <option value="make">Make</option>
         <option value="model">Model</option>
@@ -36,8 +34,8 @@ export class CarFilter extends BaseForm {
         <option value="price">Price</option>
       </select>
       <label htmlFor="filter-field-value-input">Filter Value:</label>
-      <input type="text" id="filter-field-value-input" name="filterFieldValue" value={this.state.filterFieldValue}
-        onChange={this.onChange} onKeyUp={this.onKeyUp} />
+      <input type="text" id="filter-field-value-input" name="filterFieldValue" onKeyUp={this.onKeyUp}
+        defaultValue={this.props.initialFilter.filterFieldValue} ref={ input => this.filterFieldValueInput = input } />
     </form>;
   }
   

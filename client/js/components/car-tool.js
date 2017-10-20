@@ -27,7 +27,7 @@ export class CarTool extends React.Component {
       cars: props.cars.concat(),
       editCarId: 0,
       sortFieldName: '',
-      filterFieldName: 'year',
+      filterFieldName: 'make',
       filterFieldValue: 'Ford',
     };
   }
@@ -81,10 +81,6 @@ export class CarTool extends React.Component {
   sortCars = sortFieldName => this.setState({ sortFieldName });
 
   filterCars = filter => this.setState(filter);
-
-  onChange() {
-    // this
-  }
 
   render() {
     const { filterFieldName, filterFieldValue } = this.state;
