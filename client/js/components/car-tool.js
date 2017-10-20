@@ -1,10 +1,24 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
 import { ToolHeader } from './tool-header';
 import { CarTable } from './car-table';
 import { CarForm } from './car-form';
 
+// CarTool.propTypes = { }
+
 export class CarTool extends React.Component {
+
+  static propTypes = {
+    cars: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      make: PropTypes.string,
+      model: PropTypes.string,
+      year: PropTypes.number,
+      color: PropTypes.string,
+      price: PropTypes.number,
+    })).isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -13,8 +27,8 @@ export class CarTool extends React.Component {
       cars: props.cars.concat(),
       editCarId: 0,
       sortFieldName: '',
-      filterFieldName: '',
-      filterFieldValue: '',
+      filterFieldName: 'year',
+      filterFieldValue: 'Ford',
     };
   }
 

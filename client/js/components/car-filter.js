@@ -1,8 +1,17 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
+import * as CarToolPropTypes from '../utils/car-tool-prop-types';
 import { BaseForm } from './base-form';
 
 export class CarFilter extends BaseForm {
+
+  static propTypes = {
+    initialFilter: PropTypes.shape({
+      filterFieldName: PropTypes.oneOf([ 'make', 'model', 'year', 'color', 'price' ]),
+      filterFieldValue: CarToolPropTypes.fieldAndValue,
+    }),
+  }
   
   constructor(props) {
     super(props);
