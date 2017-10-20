@@ -19,9 +19,9 @@ class ListItem extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     console.log('current:', this.props.item, 'next:', nextProps.item);
-    this.setState({
-      item: nextProps.item,
-    });
+    // this.setState({
+    //   item: nextProps.item,
+    // });
   }
 
   componentWillUnmount() {
@@ -37,7 +37,7 @@ class ListItem extends React.Component {
 class UnorderedList extends React.Component {
   render() {
     return <ul>{this.props.items.map( (item) =>
-      <ListItem item={item} />)}</ul>;
+      <ListItem key={car.id} item={item} />)}</ul>;
   }
 }
 
