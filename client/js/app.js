@@ -1,55 +1,32 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import keyMirror from 'key-mirror';
 
-let counter = 0;
+const actionTypes = keyMirror({
+  ADD: null,
+  SUBTRACT: null,
+});
 
-class ListItem extends React.Component {
+const addActionCreator = value => ({ type: actionTypes.ADD, value });
+const subtractActionCreator = value => ({ type: actionTypes.SUBTRACT, value });
 
-  constructor(props) {
-    super(props);
+const actions = [
+  addActionCreator(1),
+  subtractActionCreator(2),
+  addActionCreator(3),
+  subtractActionCreator(4),
+  addActionCreator(5),
+];
 
-    this.countIndex = counter++;
-
-    console.log('constructor:', this.countIndex);
-
-    this.state = {
-      item: props.item,
-    };
+const calcReducer = (state = { result: 0 }, action) => {
+  switch(action.type) {
+    case actionTypes.ADD:
+      return { ...state, result: state.result + action.value };
+    case actionTypes.SUBTRACT:
+      return { ...state, result: state.result - action.value };
+    default:
+      return state;
   }
+};
 
-  componentWillReceiveProps(nextProps) {
-    console.log('current:', this.props.item, 'next:', nextProps.item);
-    // this.setState({
-    //   item: nextProps.item,
-    // });
-  }
+const finalState = actions.reduce( calcReducer, undefined );
 
-  componentWillUnmount() {
-    console.log('unmounting:', this.countIndex);
-  }
-
-  render() {
-    console.log('render:', this.countIndex);
-    return <li>props: {this.props.item}, state: {this.state.item}</li>;
-  }
-}
-
-class UnorderedList extends React.Component {
-  render() {
-    return <ul>{this.props.items.map( (item) =>
-      <ListItem key={car.id} item={item} />)}</ul>;
-  }
-}
-
-const colors = ['red','green','blue'];
-
-
-ReactDOM.render(<UnorderedList items={colors} />, document.querySelector('main'));
-
-setTimeout(() => {
-
-  colors.splice(1,1);
-
-  ReactDOM.render(<UnorderedList items={colors} />, document.querySelector('main'));
-
-}, 4000);
+console.log(finalState);
