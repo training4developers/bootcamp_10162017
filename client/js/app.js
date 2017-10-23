@@ -1,66 +1,18 @@
-import keyMirror from 'key-mirror';
-import { createStore, bindActionCreators } from 'redux';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-const actionTypes = keyMirror({
-  ADD: null,
-  SUBTRACT: null,
-});
+import { ColorTool } from './components/color-tool';
 
-const addActionCreator = value => ({ type: actionTypes.ADD, value });
-const subtractActionCreator = value => ({ type: actionTypes.SUBTRACT, value });
+const colors = [
+  { id: 1, name: 'red', hexCode: '#ff0000' },
+  { id: 2, name: 'white', hexCode: '#ffffff' },
+  { id: 3, name: 'gold', hexCode: '#ffdf00' },
+  { id: 4, name: 'green', hexCode: '#ff8000' },
+  { id: 5, name: 'saffron', hexCode: '#ff9933' },
+  { id: 6, name: 'blue', hexCode: '#0000ff' },
+];
 
-const calcReducer = (state = { result: 0 }, action) => {
-  switch(action.type) {
-    case actionTypes.ADD:
-      return { ...state, result: state.result + action.value };
-    case actionTypes.SUBTRACT:
-      return { ...state, result: state.result - action.value };
-    default:
-      return state;
-  }
-};
-
-// const createStore = reducer => {
-
-//   let currentState;
-//   const subscribers = [];
-
-//   return {
-//     getState: () => currentState,
-//     dispatch: action => {
-//       currentState = reducer(currentState, action);
-//       subscribers.forEach(cb => cb());
-//     },
-//     subscribe: cb => subscribers.push(cb),
-//   };
-
-// };
-
-const appStore = createStore(calcReducer);
-
-appStore.subscribe(() => {
-  console.log(appStore.getState());
-});
-
-// const bindActionCreators = (actions, dispatch) => {
-//   const boundActions = {};
-//   Object.keys(actions).forEach(actionKey => {
-//     boundActions[actionKey] = (...params) => {
-//       dispatch(actions[actionKey](...params));
-//     };
-//   });
-//   return boundActions;
-// };
-
-const { add, subtract } = bindActionCreators({
-  add: addActionCreator,
-  subtract: subtractActionCreator,
-}, appStore.dispatch);
-
-add(1);
-subtract(2);
-add(3);
-subtract(4);
-add(5);
-
-
+ReactDOM.render(
+  <ColorTool colorList={colors} />,
+  document.querySelector('main'),
+);
