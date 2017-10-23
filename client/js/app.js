@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import keyMirror from 'key-mirror';
 import { createStore, bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 const actionTypes = keyMirror({
   ADD: null,
@@ -89,38 +89,38 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   subtract: subtractActionCreator,
 }, dispatch);
 
-// const connect = (mapStateToPropsFn, mapDispatchToPropsFn) => {
+const connect = (mapStateToPropsFn, mapDispatchToPropsFn) => {
   
-//   return PresentationalComponent => {
+  return PresentationalComponent => {
 
-//     return class ContainerComponent extends React.Component {
+    return class ContainerComponent extends React.Component {
 
-//       constructor(props) {
-//         super(props);
+      constructor(props) {
+        super(props);
 
-//         this.dispatchProps = mapDispatchToPropsFn(props.store.dispatch);
-//       }
+        this.dispatchProps = mapDispatchToPropsFn(props.store.dispatch);
+      }
 
-//       componentDidMount() {
-//         this.storeUnsubscribe = this.props.store.subscribe(() => {
-//           this.forceUpdate();
-//         });
-//       }
+      componentDidMount() {
+        this.storeUnsubscribe = this.props.store.subscribe(() => {
+          this.forceUpdate();
+        });
+      }
 
-//       componentWillUnmount() {
-//         this.storeUnsubscribe();
-//       }
+      componentWillUnmount() {
+        this.storeUnsubscribe();
+      }
  
-//       render() {
+      render() {
 
-//         const stateProps = mapStateToPropsFn(this.props.store.getState());
+        const stateProps = mapStateToPropsFn(this.props.store.getState());
 
-//         return <PresentationalComponent {...this.dispatchProps} {...stateProps} />;
-//       }
+        return <PresentationalComponent {...this.dispatchProps} {...stateProps} />;
+      }
 
-//     };
-//   };
-// };
+    };
+  };
+};
 
 const CalcToolContainer = connect(mapStateToProps, mapDispatchToProps)(CalcTool);
 
