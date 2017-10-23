@@ -8,13 +8,7 @@ const actionTypes = keyMirror({
 const addActionCreator = value => ({ type: actionTypes.ADD, value });
 const subtractActionCreator = value => ({ type: actionTypes.SUBTRACT, value });
 
-const actions = [
-  addActionCreator(1),
-  subtractActionCreator(2),
-  addActionCreator(3),
-  subtractActionCreator(4),
-  addActionCreator(5),
-];
+
 
 const calcReducer = (state = { result: 0 }, action) => {
   switch(action.type) {
@@ -27,6 +21,31 @@ const calcReducer = (state = { result: 0 }, action) => {
   }
 };
 
-const finalState = actions.reduce( calcReducer, undefined );
+const createStore = reducer => {
 
-console.log(finalState);
+  let currentState;
+  const subscribers = [];
+
+  return {
+    getState: () => currentState,
+    dispatch: action => {
+      currentState = reducer(currentState, action);
+      subscribers.forEach(cb => cb());
+    },
+    subscribe: cb => subscribers.push(cb),
+  };
+
+};
+
+const appStore = createStore(calcReducer);
+
+appStore.subscribe(() => {
+  console.log(appStore.getState());
+});
+
+appStore.dispatch(addActionCreator(1));
+appStore.dispatch(subtractActionCreator(2));
+appStore.dispatch(addActionCreator(3));
+appStore.dispatch(subtractActionCreator(4));
+appStore.dispatch(addActionCreator(5));
+
