@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ToolHeader } from './tool-header';
 import { ColorList } from './color-list';
 import { ColorForm } from './color-form'; 
+import { SortList } from './sort-list';
 
 export class ColorTool extends React.Component {
 
@@ -33,7 +34,9 @@ export class ColorTool extends React.Component {
 
     return <div>
       <ToolHeader headerText="Color Tool" />
-      <ColorList colors={this.state.colorList} />
+      <SortList list={this.state.colorList} sortField="name" dataField="colors">
+        <ColorList />
+      </SortList>
       <ColorForm onSubmitColor={this.addColor} submitButtonText="Add Color" />
     </div>;
   }
