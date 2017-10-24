@@ -11,10 +11,13 @@ export class ColorTool extends React.Component {
     super(props);
 
     this.state = {
-      colorList: props.colorList.concat(),
       newColorName: '',
       newColorHexCode: '#000000',
     };
+  }
+
+  componentDidMount() {
+    this.props.refreshColors();
   }
 
   onChange(e) {
@@ -23,18 +26,18 @@ export class ColorTool extends React.Component {
 
   addColor = newColor => {
 
-    newColor.id = Math.max(...this.state.colorList.map(c => c.id)) + 1;
+    // newColor.id = Math.max(...this.state.colorList.map(c => c.id)) + 1;
 
-    this.setState({
-      colorList: this.state.colorList.concat(newColor),
-    });
+    // this.setState({
+    //   colorList: this.state.colorList.concat(newColor),
+    // });
   };
 
   render() {
 
     return <div>
       <ToolHeader headerText="Color Tool" />
-      <SortList list={this.state.colorList} sortField="name" dataField="colors">
+      <SortList list={this.props.colors} sortField="name" dataField="colors">
         <ColorList />
       </SortList>
       <ColorForm onSubmitColor={this.addColor} submitButtonText="Add Color" />
