@@ -24,15 +24,7 @@ The application must support 2 of 3 workflows.
 
 ### Workflow 1 - Register Voters
 
-1. Create a voter registration system which collects the following information from the voter.
-
-First Name
-Last Name
-Address
-County/City
-Birthdate
-Email
-Phone
+1. Create a voter registration system which collects the following information from the voter. Fields:, First Name, Last Name, Address, County/City, Birthdate, Email,Phone
 
 1. From a main screen, the user will click a "Register Voter" button. A registration form will be displayed. The user will enter the data, click "Complete Registration" and return to the main screen.
 
@@ -64,7 +56,7 @@ Phone
 
 - On each page, display a header which includes the team name and mascot picture. Also, include some kind of motivational team slogan statement in the header.
 
-- Elsewhere on the main page, dislay the team photo.
+- Elsewhere on the main page, display the team photo.
 
 - Concerning state, use Redux to manage application state, use React to manage form control state. Please use React-Redux to connect React and Redux, and use Redux-Thunk for handling asychronous operations.
 
@@ -72,11 +64,9 @@ Phone
 
 - Each component and other classes should be in their own files.
 
-- Use Flexbox to organize the various buttons on the main page which start the workflows.
-
 ## Conditions of Victory
 
-- Three of the three workflows are completed. 
+- Two of the three workflows are completed. 
 
 - There are no errors in the console.
 
