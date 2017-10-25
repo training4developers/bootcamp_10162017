@@ -20,7 +20,7 @@ Build an Online Voting web application using HTML/CSS/JS and the libraries React
 
 ## Requirements
 
-The application must support all 3 workflows.
+The application must support 2 of 3 workflows.
 
 ### Workflow 1 - Register Voters
 
