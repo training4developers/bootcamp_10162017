@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Starter Application</title>
+  <link rel="icon" href="data:,">
+  <style>
+    
+    :invalid {
+      border: 4px solid red;
+    }
+
+    :valid {
+      border: 4px solid green;
+    }
+
+    .blue-text {
+      color: blue;
+    }
+
+    // 100 - ids
+    #content {
+      color: blue;
+    }
+
+    // 20 classes, attributed, pseudo-classes
+    .container-fluid.test {
+      color: green;
+    }
+
+    // 1 element
+    main {
+      color: red;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <main id="content" class="container-fluid test"
+    data-level="critical">Here is the main content.</main>
+
+  <input type="text" required value="" style="">
+
+  <div>
+    <p>Here is some paragraph content in a div 1</p>
+    <p>Here is some paragraph content in a div 2</p>
+    <section>
+      <p>Here is some paragraph content in a section</p>
+    </section>
+  </div>
+
+  <p>Here is some paragraph content NOT in a div</p>
+  
+  <script>
+  
+    //document.querySelector('main');
+    //document.querySelector('#content');
+    //document.querySelector('.container-fluid');
+
+    //document.querySelector('[data-level]')
+    // console.log(document.querySelector('[data-level=critical]'));
+    // console.log(document.querySelector('[data-level ^= cri]'));
+    // console.log(document.querySelector('[data-level *= iti]'));
+    // console.log(document.querySelector('[data-level $= cal]'));
+    
+    // ancestor
+    //console.log(document.querySelectorAll('div p'));
+
+    // child
+    //console.log(document.querySelectorAll('div > p'));
+
+    console.log(document.querySelectorAll('p:nth-of-type(1)'));
+
+
+  </script>
+
+</body>
+
+</html>

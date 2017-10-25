@@ -1,24 +1,67 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { connect, Provider } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { refreshColors } from './actions/refresh-colors';
-import { addColor } from './actions/add-color';
-import { appStore } from './app-store';
-import { ColorTool } from './components/color-tool';
+class ModalDialog extends React.Component {
 
-const mapStateToProps = ({ colors, showSpinner }) => ({ colors, showSpinner });
+  constructor(props) {
+    super(props);
+    this.screenBlockDiv = document.createElement('div');
+    this.screenBlockDiv.classList.add('screen-block');
+    this.modalDiv = document.createElement('div');
+    this.modalDiv.classList.add('modal-dialog');
+  }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  refreshColors, addColor 
-}, dispatch);
+  showModal = () => {
+    if (this.props.showModal) {
+      document.body.appendChild(this.screenBlockDiv);
+      document.body.appendChild(this.modalDiv);
+    } else {
+      this.screenBlockDiv.remove();
+      this.modalDiv.remove();
+    }
+  }
+  componentWillMount() {
+    this.showModal();
+  }
+  componentWillUpdate() {
+    this.showModal();
+  }
+  componentWillUnmount() {
+    this.screenBlockDiv.remove();
+    this.screenBlockDiv = null;
+    this.modalDiv.remove();
+    this.modalDiv = null;
+  }
 
-const ColorToolContainer = connect(mapStateToProps, mapDispatchToProps)(ColorTool);
+  render() {
+    return ReactDOM.createPortal(this.props.children, this.modalDiv);
+  }
+}
 
-ReactDOM.render(
-  <Provider store={appStore}>
-    <ColorToolContainer />
-  </Provider>,
-  document.querySelector('main'),
-);
+class Demo extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false,
+    };
+  }
+
+  showModal = () => this.setState({ showModal: true }, () => this.forceUpdate());
+  hideModal = () => this.setState({ showModal: false }, () => this.forceUpdate());
+  
+  render() {
+    return <div>
+      <ModalDialog showModal={this.state.showModal}>
+        <p>Roses are red, violets are blue...</p>
+        <button onClick={this.hideModal}>Close Model</button>
+      </ModalDialog>
+      <button onClick={this.showModal}>Show Modal</button>
+    </div>;
+  }
+
+}
+
+
+ReactDOM.render(<Demo />, document.querySelector('main'));
