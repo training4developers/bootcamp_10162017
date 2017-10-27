@@ -1,67 +1,109 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-class ModalDialog extends React.Component {
+class Third extends React.Component {
 
   constructor(props) {
     super(props);
-    this.screenBlockDiv = document.createElement('div');
-    this.screenBlockDiv.classList.add('screen-block');
-    this.modalDiv = document.createElement('div');
-    this.modalDiv.classList.add('modal-dialog');
+
+    console.log('constructor: third');
   }
 
-  showModal = () => {
-    if (this.props.showModal) {
-      document.body.appendChild(this.screenBlockDiv);
-      document.body.appendChild(this.modalDiv);
-    } else {
-      this.screenBlockDiv.remove();
-      this.modalDiv.remove();
-    }
-  }
   componentWillMount() {
-    this.showModal();
+    console.log('component will mount: third');
   }
+  
+  componentDidMount() {
+    console.log('component did mount: third');
+  }
+
   componentWillUpdate() {
-    this.showModal();
+    console.log('component will update: third');
   }
-  componentWillUnmount() {
-    this.screenBlockDiv.remove();
-    this.screenBlockDiv = null;
-    this.modalDiv.remove();
-    this.modalDiv = null;
+
+  componentDidUpdate() {
+    console.log('component did update: third');
   }
+  
 
   render() {
-    return ReactDOM.createPortal(this.props.children, this.modalDiv);
+    console.log('render: third');
+    return 'Content';
   }
+  
 }
 
-class Demo extends React.Component {
+class Second extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      showModal: false,
-    };
+    
+    console.log('constructor: second');
   }
 
-  showModal = () => this.setState({ showModal: true }, () => this.forceUpdate());
-  hideModal = () => this.setState({ showModal: false }, () => this.forceUpdate());
+  componentWillMount() {
+    console.log('component will mount: second');
+  }
+
+  componentDidMount() {
+    console.log('component did mount: second');
+  }
+
+  componentWillUpdate() {
+    console.log('component will update: second');
+  }
+
+  componentDidUpdate() {
+    console.log('component did update: second');
+  }
+  
   
   render() {
-    return <div>
-      <ModalDialog showModal={this.state.showModal}>
-        <p>Roses are red, violets are blue...</p>
-        <button onClick={this.hideModal}>Close Model</button>
-      </ModalDialog>
-      <button onClick={this.showModal}>Show Modal</button>
-    </div>;
+    console.log('render: second');
+    return <Third />;
   }
 
 }
 
+class First extends React.Component {
 
-ReactDOM.render(<Demo />, document.querySelector('main'));
+  constructor(props) {
+    super(props);
+    
+    console.log('constructor: first');
+  }
+
+  componentWillMount() {
+    console.log('component will mount: first');
+  }
+
+  componentDidMount() {
+    console.log('component did mount: first');
+  }
+
+  componentWillUpdate() {
+    console.log('component will update: first');
+  }
+
+  componentDidUpdate() {
+    console.log('component did update: first');
+  }
+
+  render() {
+    console.log('render: first');
+    return <Second />;
+  }
+
+  shouldComponentUpdate() {
+    console.log('should component update: first');
+    return true;
+  }
+
+}
+
+ReactDOM.render(<First />, document.querySelector('main'));
+
+setTimeout(() => {
+  console.log('re-rendering...');
+  ReactDOM.render(<First />, document.querySelector('main'));
+}, 3000);
