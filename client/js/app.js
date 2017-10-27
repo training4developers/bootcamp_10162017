@@ -1,142 +1,77 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 
-class ErrorBoundary extends React.Component {
-
-  componentDidCatch(error, info) {
-    console.log('error', error, 'info', info);
+// Each logical "route" has two components, one for
+// the sidebar and one for the main area. We want to
+// render both of them in different places when the
+// path matches the current URL.
+const routes = [
+  { path: '/',
+    exact: true,
+    sidebar: () => <div>home!</div>,
+    main: () => <h2>Home</h2>
+  },
+  { path: '/bubblegum',
+    sidebar: () => <div>bubblegum!</div>,
+    main: () => <h2>Bubblegum</h2>
+  },
+  { path: '/shoelaces',
+    sidebar: () => <div>shoelaces!</div>,
+    main: () => <h2>Shoelaces</h2>
   }
+];
 
-  render() {
-    return this.props.children;
-  }
-}
+const SidebarExample = () => (
+  <Router>
+    <div style={{ display: 'flex' }}>
+      <div style={{
+        padding: '10px',
+        width: '40%',
+        background: '#f0f0f0'
+      }}>
+        <ul style={{ listStyleType: 'none', padding: 0 }}>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/bubblegum">Bubblegum</Link></li>
+          <li><Link to="/shoelaces">Shoelaces</Link></li>
+        </ul>
 
-class Third extends React.Component {
+        {routes.map((route, index) => (
+          // You can render a <Route> in as many places
+          // as you want in your app. It will render along
+          // with any other <Route>s that also match the URL.
+          // So, a sidebar or breadcrumbs or anything else
+          // that requires you to render multiple things
+          // in multiple places at the same URL is nothing
+          // more than multiple <Route>s.
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.sidebar}
+          />
+        ))}
+      </div>
 
-  constructor(props) {
-    super(props);
+      <div style={{ flex: 1, padding: '10px' }}>
+        {routes.map((route, index) => (
+          // Render more <Route>s with the same paths as
+          // above, but different components this time.
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.main}
+          />
+        ))}
+      </div>
+    </div>
+  </Router>
+);
 
-    console.log('constructor: third');
-  }
 
-  componentWillMount() {
-    console.log('component will mount: third');
-  }
-  
-  componentDidMount() {
-    console.log('component did mount: third');
-  }
-
-  componentWillUpdate() {
-    console.log('component will update: third');
-  }
-
-  componentDidUpdate() {
-    console.log('component did update: third');
-  }
-  
-
-  render() {
-
-    throw Error('something went wrong');
-
-    //console.log('render: third');
-    //return 'Content';
-  }
-  
-}
-
-class Second extends React.Component {
-
-  constructor(props) {
-    super(props);
-    
-    console.log('constructor: second');
-  }
-
-  componentWillMount() {
-    console.log('component will mount: second');
-  }
-
-  componentDidMount() {
-    console.log('component did mount: second');
-  }
-
-  componentWillUpdate() {
-    console.log('component will update: second');
-  }
-
-  componentDidUpdate() {
-    console.log('component did update: second');
-  }
-  
-  
-  render() {
-    console.log('render: second');
-    return <Third />;
-  }
-
-}
-
-class First extends React.PureComponent {
-
-  constructor(props) {
-    super(props);
-    
-    console.log('constructor: first');
-  }
-
-  componentWillMount() {
-    console.log('component will mount: first');
-  }
-
-  componentDidMount() {
-    console.log('component did mount: first');
-  }
-
-  componentWillUpdate() {
-    console.log('component will update: first');
-  }
-
-  componentDidUpdate() {
-    console.log('component did update: first');
-  }
-
-  render() {
-    console.log('render: first');
-    return <div>
-      {this.props.data.message}
-      <ErrorBoundary>
-        <Second />
-      </ErrorBoundary>
-    </div>;
-  }
-
-  // shouldComponentUpdate(nextProps) {
-  //   console.log('should component update: first');
-  //   return nextProps.data !== this.props.data;
-  // }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('component will receive props: first');
-  }
-
-}
-
-let data = { message: 'Hello Class' };
-
-ReactDOM.render(<First data={data} />,
-  document.querySelector('main'));
-
-// setTimeout(() => {
-
-//   //data.message = 'Bye Class';
-//   data = { ...data, message: 'Bye Class' };
-
-//   console.log('re-rendering...');
-//   ReactDOM.render(
-//     <ErrorBoundary>
-//       <First data={data} />
-//     </ErrorBoundary>, document.querySelector('main'));
-// }, 3000);
+ReactDOM.render(<SidebarExample />, document.querySelector('main'));
