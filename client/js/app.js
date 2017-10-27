@@ -65,7 +65,7 @@ class Second extends React.Component {
 
 }
 
-class First extends React.Component {
+class First extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -91,19 +91,32 @@ class First extends React.Component {
 
   render() {
     console.log('render: first');
-    return <Second />;
+    return <div>
+      {this.props.data.message}
+      <Second />
+    </div>;
   }
 
-  shouldComponentUpdate() {
-    console.log('should component update: first');
-    return true;
+  // shouldComponentUpdate(nextProps) {
+  //   console.log('should component update: first');
+  //   return nextProps.data !== this.props.data;
+  // }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('component will receive props: first');
   }
 
 }
 
-ReactDOM.render(<First />, document.querySelector('main'));
+let data = { message: 'Hello Class' };
+
+ReactDOM.render(<First data={data} />, document.querySelector('main'));
 
 setTimeout(() => {
+
+  //data.message = 'Bye Class';
+  data = { ...data, message: 'Bye Class' };
+
   console.log('re-rendering...');
-  ReactDOM.render(<First />, document.querySelector('main'));
+  ReactDOM.render(<First data={data} />, document.querySelector('main'));
 }, 3000);
