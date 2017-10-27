@@ -1,6 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+class ErrorBoundary extends React.Component {
+
+  componentDidCatch(error, info) {
+    console.log('error', error, 'info', info);
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
+
 class Third extends React.Component {
 
   constructor(props) {
@@ -27,8 +38,11 @@ class Third extends React.Component {
   
 
   render() {
-    console.log('render: third');
-    return 'Content';
+
+    throw Error('something went wrong');
+
+    //console.log('render: third');
+    //return 'Content';
   }
   
 }
@@ -93,7 +107,9 @@ class First extends React.PureComponent {
     console.log('render: first');
     return <div>
       {this.props.data.message}
-      <Second />
+      <ErrorBoundary>
+        <Second />
+      </ErrorBoundary>
     </div>;
   }
 
@@ -110,13 +126,17 @@ class First extends React.PureComponent {
 
 let data = { message: 'Hello Class' };
 
-ReactDOM.render(<First data={data} />, document.querySelector('main'));
+ReactDOM.render(<First data={data} />,
+  document.querySelector('main'));
 
-setTimeout(() => {
+// setTimeout(() => {
 
-  //data.message = 'Bye Class';
-  data = { ...data, message: 'Bye Class' };
+//   //data.message = 'Bye Class';
+//   data = { ...data, message: 'Bye Class' };
 
-  console.log('re-rendering...');
-  ReactDOM.render(<First data={data} />, document.querySelector('main'));
-}, 3000);
+//   console.log('re-rendering...');
+//   ReactDOM.render(
+//     <ErrorBoundary>
+//       <First data={data} />
+//     </ErrorBoundary>, document.querySelector('main'));
+// }, 3000);
